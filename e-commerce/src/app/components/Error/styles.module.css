@@ -1,0 +1,56 @@
+.card {
+    background-color: #730101;
+    border: 1px solid #ff0000;
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 16px;
+    min-width: 250px;
+  }
+  
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+  }
+  
+  .message {
+    font-size: 20px;
+    color: white;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .button {
+    background-color: #af0000;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .button:hover {
+    background-color: #fa2424;
+    color: rgb(45, 0, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      padding: 16px;
+      min-width: auto;
+    }
+  
+    .title {
+      font-size: 24px;
+      margin-bottom: 1.5rem;
+    }
+  
+    .message {
+      font-size: 16px;
+    }
+  }

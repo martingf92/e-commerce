@@ -2,14 +2,13 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import Loader from '../../components/Loader';
-import Error from '../../components/Error';
-
+import ErrorMessage from '../../components/Error';
 
 interface Category {
   id: number;
   name: string;
   image: string;
-  creationAt: string;
+  createdAt: string;
   updatedAt: string;
 }
 
@@ -24,17 +23,18 @@ const App = () => {
   });
 
   if (isLoading) {
-    return <Loader/>
+    return <Loader />
   }
 
   if (error) {
-    return <Error message={error.message} />;  }
+    return <ErrorMessage message={(error as { message?: string }).message || 'Unknown error'} />;
+  }
 
   return (
     <div className={styles.categoryList}>
       <h2>Categories</h2>
       <div className={styles.categoryCards}>
-        {data.map((category) => (
+        {data?.map((category) => (
           <div key={category.id} className={styles.categoryCard}>
             <Link to={`/category/${category.id}/products`}>
               <img src={category.image} alt={category.name} />
@@ -48,3 +48,4 @@ const App = () => {
 };
 
 export default App;
+
