@@ -102,6 +102,9 @@ const ProductListView: React.FC = (): React.ReactElement => {
 
   const filteredProducts = productsData || [];
 
+
+
+
 return (
     <div className={styles.productList}>
       <h2>Product List</h2>

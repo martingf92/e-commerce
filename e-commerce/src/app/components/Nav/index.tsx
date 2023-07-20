@@ -34,7 +34,7 @@ const Nav: React.FC<NavProps> = ({ loggedIn, setLoggedIn }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/categories">Categories</Link>
+          <Link to="/categorias">Categories</Link>
         </li>
         <li>
           <Link to="/products">Products</Link>
