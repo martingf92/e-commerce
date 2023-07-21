@@ -1,14 +1,18 @@
-import Nav from '../Nav';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
+import Nav from "../Nav";
 
-function Layout() {
+interface LayoutProps {
+  loggedIn: boolean;
+  setLoggedIn: (loggedIn: boolean) => void;
+}
+
+const Layout: React.FC<LayoutProps> = ({ loggedIn, setLoggedIn }) => {
   return (
     <>
-      <Nav />
+      <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Outlet />
     </>
   );
-};
+}
 
 export default Layout;
-

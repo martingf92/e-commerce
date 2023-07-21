@@ -1,17 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import styles from './styles.module.css';
 
-interface ErrorProps {
+interface ErrorMessageProps {
   message: string;
 }
 
-const Error: React.FC<ErrorProps> = (props) => {
-  const { message } = props;
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
   return (
-    <div>
-      <h2>Error</h2>
-      <p>{message}</p>
+    <div className={styles.card}>
+      <h2 className={styles.title}>Error</h2>
+      <p className={styles.message}>{message}</p>
+      <Link to="/" className={styles.button}>Back to Home</Link>
     </div>
   );
 };
 
-export default Error;
+export default ErrorMessage;

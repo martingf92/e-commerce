@@ -1,28 +1,45 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home";
 import NotFound from "./screens/NotFound";
 import Layout from "./components/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
-import CategoriesPage from "./screens/categorias_/CategoriesPage";
 import ProductsPage from "./screens/productos/ProductsPage";
-import CategoriesByProducts from "./screens/categorias/CategoriesByProducts";
-
+import LoginUser from "./screens/LoginUser";
+import RegisterUser from './screens/RegisterUser';
+import { PrivateRoute } from './components/PrivateRoute';
+import Categories from "./screens/categorias";
+import ProductsByCategory from "./screens/categoriesByProducts";
 const queryClient = new QueryClient();
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/category/:categoryId/products" element={<CategoriesByProducts/>} />
+          <Route element={<Layout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}>
+            <Route path="/" element={<Home />} />        
+            <Route path="/categories" element={<Categories/>} />
+            <Route path="/category/:categoryId/products" element={<ProductsByCategory/> } />
             <Route path="/products" element={<ProductsPage />} />
-            {/* <Route path="/products/:id" element={<ProductsId />} />
-            <Route path="/products/create" element={<CreateProducts/>} />
-            <Route path="/products/:productId/edit" element={<EditProducts/>} />
-            <Route path="/cart-detail" element={<DetailCart/>} /> */}
+            <Route
+              path="/login"
+              element={
+                <PrivateRoute>
+                  <LoginUser setLoggedIn={setLoggedIn} />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PrivateRoute>
+                  <RegisterUser setLoggedIn={setLoggedIn} />
+                </PrivateRoute>
+              }
+            />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -32,3 +49,4 @@ function App() {
 }
 
 export default App;
+
