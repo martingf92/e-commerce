@@ -33,16 +33,15 @@
 }
 
 .productListGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .productCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex: 0 0 calc(25% - 1rem); /* 4 cards por fila con espacio entre ellas */
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -58,8 +57,8 @@
 
 .productCard img {
   width: 100%;
-  height: auto;
-  margin-bottom: 0.5rem;
+  height: 200px; /* Tamaño fijo para todas las imágenes */
+  object-fit: cover; /* Para asegurarse de que todas las imágenes se ajusten bien */
   border-radius: 4px;
 }
 
@@ -74,4 +73,27 @@
 .noProductsMessage {
   margin-top: 1rem;
   text-align: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.pagination span {
+  font-size: 1rem;
+  font-weight: bold;
 }

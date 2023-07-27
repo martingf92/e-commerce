@@ -177,9 +177,12 @@
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+
+
+
 
 interface AuthResponse {
   access_token: string;
@@ -252,6 +255,14 @@ const Login: React.FC = () => {
     const user: User = await response.json();
     return user;
   };
+  const accessToken = localStorage.getItem("accessToken");
+
+  useEffect(() => {
+    // Si el usuario ya tiene un token de acceso, lo redirigimos a la página principal ("/")
+    if (accessToken) {
+      navigate("/");
+    }
+  }, [accessToken, navigate]);
 
   return (
     <div className={styles.container}>
