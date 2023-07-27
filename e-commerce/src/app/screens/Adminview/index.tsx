@@ -15,7 +15,7 @@
 import React from "react";
 import "./styles.module.css"; // Importar el archivo CSS que creamos con el nuevo nombre
 
-const AdminDashboardPage: React.FC = () => {
+const AdminPage: React.FC = () => {
   return (
     <div className="container">
       <h2>Welcome to the Admin Dashboard!</h2>
@@ -80,5 +80,5 @@ const AdminDashboardPage: React.FC = () => {
   );
 };
 
-export default AdminDashboardPage;
+export default AdminPage;
 

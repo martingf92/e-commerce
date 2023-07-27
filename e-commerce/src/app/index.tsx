@@ -66,6 +66,8 @@ import AdminDashboardPage from "./screens/Adminview";
 import AddProductForm from "./screens/CreateProducts/index";
 import EditProductForm from "./screens/EditProducts/index";
 import PrivateRoute from './components/PrivateRoute';
+import AdminProtectedRoute, { AdminRoute } from "./components/Admin";
+import AdminPage from "./screens/Adminview";
 
 interface AppProps {
   // Agrega las props si las tienes en el componente
@@ -119,14 +121,27 @@ const App: React.FC<AppProps> = () => {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/login" element={<LoginUser setLoggedIn={setLoggedIn} />} />
             <Route path="/register" element={<RegisterUser setLoggedIn={setLoggedIn} />} />
-            {isAdmin && (
-              <Route path="/Adminview" element={<AdminDashboardPage />} />
-            )}
             
+            <Route
+              path="/adminpage"
+              element={
+                <AdminRoute>
+                  <AdminPage />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/producto/create"
+              element={
+                <AdminRoute>
+                  <CreateProduct />
+                </AdminRoute>
+              }
+            />
             <Route path="/screens/CreateProducts" element={
-            <PrivateRoute  loggedIn={loggedIn} >
+            <AdminProtectedRoute   >
             <AdminDashboardPage />
-            </PrivateRoute>} />
+            </AdminProtectedRoute>} />
             
             
             <Route path="/screens/EditProducts" element={
