@@ -13,6 +13,10 @@ import { AdminProtectedRoute } from "./components/AdminProtectedRoute";
 import AdminPage from "./screens/Adminview";
 import CreateProduct from "./screens/CreateProducts";
 import CreateCategory from "./screens/CreateCategories";
+import EditDeleteCategory from "./screens/EditDeleteCategories"
+
+
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -60,7 +64,7 @@ function App() {
             }/>
             <Route path="/edit/category" element ={
               <AdminProtectedRoute>
-                <CreateCategory />
+                <EditDeleteCategory />
                 {/* <EditCategory /> */}
               </AdminProtectedRoute>
             }/>
