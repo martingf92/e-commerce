@@ -1,87 +1,113 @@
 /* adminDashboardStyles.css */
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.formContainer {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.inputLabel {
+  font-weight: bold;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.tableContainer {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+}
+
+.tableHeader {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.tableRow {
+  background-color: #fff;
+}
+
+.tableRow:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.tableCell {
+  padding: 10px;
+}
+
+/* Estilos para las cards del dashboard */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section {
+  flex-basis: calc(50% - 20px);
+  box-sizing: border-box;
+}
+
+/* Estilos para las imágenes de las cards */
+.cardImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Estilos responsive */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
   }
   
-  h2 {
-    margin-bottom: 20px;
-    color: #007bff;
-  }
-  
-  /* Estilos para los formularios o componentes que agregues en el Dashboard */
-  .formContainer {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .inputLabel {
-    font-weight: bold;
-  }
-  
-  .input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
+  .section {
+    flex-basis: 100%;
     margin-bottom: 10px;
   }
-  
-  .button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilos para las secciones o componentes adicionales del Dashboard */
-  .section {
-    margin-bottom: 30px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f9fa;
-  }
-  
-  /* Estilos para tablas, listas o cualquier otro elemento específico que agregues */
-  .tableContainer {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  
-  .table {
-    width: 100%;
-  }
-  
-  .tableHeader {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    font-weight: bold;
-  }
-  
-  .tableRow {
-    background-color: #fff;
-  }
-  
-  .tableRow:nth-child(even) {
-    background-color: #f8f9fa;
-  }
-  
-  .tableCell {
-    padding: 10px;
-  }
-  
-  /* Estilos adicionales según tus necesidades */
-  
+}

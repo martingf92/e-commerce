@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  color: #333;
+  color: black;
 }
 
 .filters {
@@ -19,7 +19,8 @@
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .filterButton {
@@ -41,25 +42,38 @@
 }
 
 .productCard {
-  flex: 0 0 calc(25% - 1rem); /* 4 cards por fila con espacio entre ellas */
+  flex: 0 0 calc(75% - 1rem); /* Card occupies 75% of the screen width */
+  display: flex;
+  align-items: center;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
-  cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 
 .productCard:hover {
   transform: translateY(-5px);
 }
 
-.productCard img {
+.productImageContainer {
+  flex: 0 0 200px; /* Set fixed width for the image container */
+  height: 200px; /* Set fixed height for the image container */
+  margin-right: 1rem; /* Add some spacing between image and text */
+  overflow: hidden; /* Hide any overflow from the image */
+}
+
+.productImage {
   width: 100%;
-  height: 200px; /* Tamaño fijo para todas las imágenes */
-  object-fit: cover; /* Para asegurarse de que todas las imágenes se ajusten bien */
+  height: 100%;
+  object-fit: cover;
   border-radius: 4px;
+}
+
+.productCardDetails {
+  flex: 1;
 }
 
 .productCard h3 {
@@ -96,4 +110,14 @@
 .pagination span {
   font-size: 1rem;
   font-weight: bold;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .productCard {
+    flex: 0 0 100%;
+  }
+  .productCardDetails {
+    margin-top: 1rem; /* Add some spacing between image and text on smaller screens */
+  }
 }

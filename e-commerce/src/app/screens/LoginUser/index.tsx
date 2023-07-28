@@ -183,7 +183,6 @@ import styles from "./styles.module.css";
 
 
 
-
 interface AuthResponse {
   access_token: string;
   refresh_token: string;
@@ -231,9 +230,11 @@ const Login: React.FC = () => {
 
       const data: AuthResponse = await response.json();
       localStorage.setItem("accessToken", data.access_token);
+      localStorage.setItem("loggedIn", 'true');
+
 
       const user = await getUserProfile(data.access_token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("userData", JSON.stringify(user));
 
       navigate("/");
     } catch (error) {
@@ -255,14 +256,8 @@ const Login: React.FC = () => {
     const user: User = await response.json();
     return user;
   };
-  const accessToken = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    // Si el usuario ya tiene un token de acceso, lo redirigimos a la página principal ("/")
-    if (accessToken) {
-      navigate("/");
-    }
-  }, [accessToken, navigate]);
+
 
   return (
     <div className={styles.container}>

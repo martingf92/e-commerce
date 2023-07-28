@@ -37,14 +37,12 @@ interface UserData {
   role: string;
 }
 
-
-
-export const AdminRoute = ({ children }) => {
+export const AdminProtectedRoute = ({ children }) => {
   const loggedIn = localStorage.getItem('loggedIn') === 'true';
   
   const storedUserData = localStorage.getItem("userData");
   const userData: UserData | null = storedUserData ? JSON.parse(storedUserData) : null;
-  const isAdmin = userData?.role === 'admin'
+  const isAdmin = userData?.role === 'admin' 
 
   return isAdmin && loggedIn ? children : <Navigate to="/" replace />;
 };
