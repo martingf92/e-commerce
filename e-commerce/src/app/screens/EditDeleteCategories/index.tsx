@@ -9,6 +9,7 @@ interface Category {
   image: string;
   creationAt: string;
   updatedAt: string;
+  categoryId: string;
 }
 
 const EditDeleteCategory: React.FC = () => {
@@ -23,9 +24,14 @@ const EditDeleteCategory: React.FC = () => {
   const [editedImage, setEditedImage] = useState("");
 
   const navigate = useNavigate();
-  const { categoryId } = useParams<{ categoryId: string }>();
-  const parsedCategoryId = parseInt(categoryId, 10);
-  const apiUrl = `https://api.escuelajs.co/api/v1/categories/${parsedCategoryId}`;
+  const { categoryId } = useParams<{ categoryId?: string }>();
+  const parsedCategoryId = parseInt(categoryId ?? "", 10);
+  const apiUrl = isNaN(parsedCategoryId)
+  ? "https://api.escuelajs.co/api/v1/categories" // Default URL when categoryId is undefined or not a valid number
+  : `https://api.escuelajs.co/api/v1/categories/${parsedCategoryId}`;
+  console.log("apiUrl:", apiUrl);
+  
+  console.log("apiUrl:", apiUrl);
 
   const fetchCategories = async () => {
     try {
@@ -45,10 +51,9 @@ const EditDeleteCategory: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch category data when the component mounts
     const fetchCategoryData = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error("Failed to fetch category data");
@@ -56,15 +61,14 @@ const EditDeleteCategory: React.FC = () => {
         const categoryData: Category = await response.json();
         setEditedName(categoryData.name);
         setEditedImage(categoryData.image);
-        setSuccess(""); // Clear the success state
-        setError(""); // Clear the error state on successful fetch
+        setSuccess("");
+        setError("");
       } catch (error) {
         setError(error.message || "Failed to fetch category data");
       } finally {
         setLoading(false);
       }
     };
-
     fetchCategoryData();
   }, [apiUrl]);
 
@@ -78,7 +82,6 @@ const EditDeleteCategory: React.FC = () => {
 
   const handleUpdate = async () => {
     setLoading(true);
-
     try {
       if (!selectedCategory) {
         throw new Error("No category selected for update");
@@ -98,17 +101,15 @@ const EditDeleteCategory: React.FC = () => {
       });
 
       if (!response.ok) {
-        const errorMessage = "Failed to update category";
-        throw new Error(errorMessage);
+        throw new Error("Failed to update category");
       }
 
       setSuccess("Category updated successfully");
       setError("");
       setLoading(false);
-      setSelectedCategory(null); // Clear the selected category after successful update
+      setSelectedCategory(null);
       setEditedName("");
       setEditedImage("");
-      // Fetch the updated category data
       fetchCategories();
     } catch (error) {
       setError(error.message || "Failed to update category");
@@ -124,36 +125,35 @@ const EditDeleteCategory: React.FC = () => {
 
   const handleConfirmDelete = async () => {
     setLoading(true);
-
     try {
+      if (!categoryIdToDelete) {
+        throw new Error("No category selected for deletion");
+      }
+
       const response = await fetch(`https://api.escuelajs.co/api/v1/categories/${categoryIdToDelete}`, {
         method: "DELETE",
       });
 
       if (!response.ok) {
-        const errorMessage = "Failed to delete category";
-        throw new Error(errorMessage);
+        throw new Error("Failed to delete category");
       }
 
-      // Filter out the deleted category from the categories state
       setCategories((prevCategories) => prevCategories.filter((category) => category.id !== categoryIdToDelete));
-      setLoading(false);
-      setSelectedCategory(null); // Clear the selected category after successful deletion
-      setShowDeleteConfirmation(false); // Close the delete confirmation modal
+      setSelectedCategory(null);
+      setShowDeleteConfirmation(false);
     } catch (error) {
       setError(error.message || "Failed to delete category");
+    } finally {
       setLoading(false);
-      setShowDeleteConfirmation(false); // Close the delete confirmation modal on error
     }
   };
 
   const handleCancelDelete = () => {
-    setShowDeleteConfirmation(false); // Close the delete confirmation modal
+    setShowDeleteConfirmation(false);
   };
 
   const handleEditModal = (category: Category) => {
     setSelectedCategory(category);
-    // Set the values of the category being edited to the states
     setEditedName(category.name);
     setEditedImage(category.image);
   };
@@ -171,7 +171,7 @@ const EditDeleteCategory: React.FC = () => {
         <div>Loading...</div>
       ) : (
         <>
-          {error && <ErrorMessage message={error} />}
+          {error && <ErrorMessage message={error} />} {/* Display error message */}
           {success && <p>{success}</p>}
           <div className={styles.buttonContainer}>
             <button className={styles.navButton} onClick={() => navigate("/adminpage")}>
