@@ -14,7 +14,7 @@ import AdminPage from "./screens/Adminview";
 import CreateProduct from "./screens/CreateProducts";
 import CreateCategory from "./screens/CreateCategories";
 import EditDeleteCategory from "./screens/EditDeleteCategories"
-
+import EditDeleteProducts from "./screens/EditDeleteProducts";
 
 
 const queryClient = new QueryClient();
@@ -52,11 +52,11 @@ function App() {
             }/>
             <Route path="/edit/product" element ={
               <AdminProtectedRoute>
-                <CreateProduct />
+                <EditDeleteProducts />
                 {/* <EditProduct /> */}
-
-              </AdminProtectedRoute>
+                </AdminProtectedRoute>
             }/>
+              
             <Route path="/create/category" element ={
               <AdminProtectedRoute>
                 <CreateCategory />
