@@ -3,12 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import LogoutModal from "../LogoutModal";
 
-interface NavProps {
-  loggedIn: boolean;
-  setLoggedIn: (loggedIn: boolean) => void;
-}
-
-const Nav: React.FC<NavProps> = ({ loggedIn, setLoggedIn }) => {
+const Nav: React.FC = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
@@ -18,9 +13,15 @@ const Nav: React.FC<NavProps> = ({ loggedIn, setLoggedIn }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    setLoggedIn(false);
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userData");
     setShowLogoutModal(false);
   };
+
+  // Retrieve user data from localStorage
+  const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+  const isAdmin = userData.role === "admin"; // Assuming the role key is stored in "userData"
 
   return (
     <nav className={styles.navbar}>
@@ -34,11 +35,17 @@ const Nav: React.FC<NavProps> = ({ loggedIn, setLoggedIn }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/categories">Categories</Link>
+          <Link to="/categorias">Categories</Link>
         </li>
         <li>
           <Link to="/products">Products</Link>
         </li>
+
+        {loggedIn && isAdmin && (
+          <li>
+            <Link to="/adminpage">Dashboard</Link>
+          </li>
+        )}
 
         <li className={styles.dropdown}>
           <span>Account</span>
@@ -61,12 +68,9 @@ const Nav: React.FC<NavProps> = ({ loggedIn, setLoggedIn }) => {
         </li>
       </ul>
 
-      {showLogoutModal && (
-        <LogoutModal handleLogout={handleLogout} />
-      )}
+      {showLogoutModal && <LogoutModal handleLogout={handleLogout} />}
     </nav>
   );
 };
 
 export default Nav;
-

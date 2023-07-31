@@ -4,11 +4,20 @@ import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/Error";
 import styles from "./styles.module.css";
 
-interface RegisterUserProps {
-  setLoggedIn: (loggedIn: boolean) => void;
+interface AuthResponse {
+  access_token: string;
+  refresh_token: string;
 }
 
-const RegisterUser: React.FC<RegisterUserProps> = ({ setLoggedIn }) => {
+interface User {
+  id: number;
+  email: string;
+  name: string;
+  role: string;
+  avatar: string;
+}
+
+const RegisterUser: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,9 +58,12 @@ const RegisterUser: React.FC<RegisterUserProps> = ({ setLoggedIn }) => {
         throw new Error(errorMessage);
       }
 
-      const data = await response.json();
+      const data: AuthResponse = await response.json();
       localStorage.setItem("accessToken", data.access_token);
-      setLoggedIn(true); // Actualiza el estado loggedIn a true
+      localStorage.setItem("loggedIn", 'true');
+
+      const user = await getUserProfile(data.access_token);
+      localStorage.setItem("userData", JSON.stringify(user));
 
       navigate("/"); // Redirige al usuario a la página principal
     } catch (error) {
@@ -59,6 +71,21 @@ const RegisterUser: React.FC<RegisterUserProps> = ({ setLoggedIn }) => {
     } finally {
       setLoading(false);
     }
+  };
+  
+  const getUserProfile = async (accessToken: string): Promise<User> => {
+    const response = await fetch("https://api.escuelajs.co/api/v1/auth/profile", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get user profile");
+    }
+
+    const user: User = await response.json();
+    return user;
   };
 
   return (

@@ -46,7 +46,7 @@ const ProductsByCategory: React.FC = () => {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
+  const productsPerPage = 8;
 
   if (isLoading) {
     return <Loader />;
@@ -71,9 +71,9 @@ const ProductsByCategory: React.FC = () => {
       <h2>Products by Category: {categoryId}</h2>
       {currentProducts && currentProducts.length > 0 ? (
         <>
-          <div className={styles.productList}>
+          <div className={styles.categoryCards}>
             {currentProducts.map((product) => (
-              <div key={product.id} className={styles.productCard}>
+              <div key={product.id} className={styles.categoryCard}>
                 <img src={product.images[0]} alt={product.title} className={styles.productImage} />
                 <h3 className={styles.productTitle}>{product.title}</h3>
                 <p className={styles.productPrice}>Price: {product.price}</p>

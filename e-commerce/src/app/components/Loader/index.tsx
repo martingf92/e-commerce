@@ -2,7 +2,7 @@ const Loader = () => {
   return (
     <>
     <div>
-      <img src='/jake.gif' alt="Loader" />
+      <img src='jake.gif' alt="Loader" />
     </div>
     <span>Loading...</span>
     </>
