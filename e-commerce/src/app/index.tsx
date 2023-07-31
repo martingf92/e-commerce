@@ -15,7 +15,7 @@ import CreateProduct from "./screens/CreateProducts";
 import CreateCategory from "./screens/CreateCategories";
 import EditDeleteCategory from "./screens/EditDeleteCategories"
 import EditDeleteProducts from "./screens/EditDeleteProducts";
-
+import  CartProvider  from './hooks/CreateContext';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +24,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <CartProvider>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />        
@@ -71,6 +72,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </CartProvider>
       </BrowserRouter>
     </QueryClientProvider>
   );
