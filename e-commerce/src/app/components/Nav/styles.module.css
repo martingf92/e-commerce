@@ -9,6 +9,27 @@
     border-radius: 10px;
     height: 100px
   }
+  /* styles.module.css */
+
+/* ... Otros estilos ... */
+
+.shop {
+  display: flex;
+  width: 1px; /* Ajusta el tamaño según sea necesario */
+  height: 1px; /* Ajusta el tamaño según sea necesario */
+}
+
+.cartItemCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff9900;
+  color: #fff;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
 .logo {
   display: flex;
   align-items: center;
