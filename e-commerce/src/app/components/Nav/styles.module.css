@@ -15,8 +15,9 @@
 
 .shop {
   display: flex;
-  width: 1px; /* Ajusta el tamaño según sea necesario */
-  height: 1px; /* Ajusta el tamaño según sea necesario */
+  /* Adjust the width and height values as needed */
+  width: 40px; /* Example width */
+  height: 40px; /* Example height */
 }
 
 .cartItemCount {
@@ -76,6 +77,13 @@ a:hover {
     padding: 20px;
 
   }
+  @media (max-width: 768px) {
+    .shop {
+      width: 30px; /* Example width for smaller screens */
+      height: 30px; /* Example height for smaller screens */
+    }
+  }
+  
 
   .logo {
     margin-bottom: 10px;

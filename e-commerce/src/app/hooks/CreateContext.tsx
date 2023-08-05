@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface Product {
+  product: any;
+  image: string | undefined;
+  name: string | undefined;
   id: number;
   title: string;
   price: number;

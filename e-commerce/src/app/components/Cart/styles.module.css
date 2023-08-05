@@ -33,15 +33,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: #007bff;
     border-radius: 50%;
   }
   
   .cartIcon img {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     color: #fff;
   }
   
