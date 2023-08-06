@@ -16,7 +16,8 @@ import CreateCategory from "./screens/CreateCategories";
 import EditDeleteCategory from "./screens/EditDeleteCategories"
 import EditDeleteProducts from "./screens/EditDeleteProducts";
 import  CartProvider  from './hooks/CreateContext';
-
+import Cart from "./screens/DetailCart";
+import CompraExitosa from "./screens/Success";
 const queryClient = new QueryClient();
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
             <Route path="/categorias" element={<Categories/>} />
             <Route path="/category/:categoryId/products" element={<ProductsByCategory/> } />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/cart/detail" element={<Cart />} />
+             <Route path="/success/" element={<CompraExitosa />} /> 
             <Route path="/login" element={
                 <PrivateRoute>
                   <LoginUser />
@@ -68,6 +71,7 @@ function App() {
                 <EditDeleteCategory />
                 {/* <EditCategory /> */}
               </AdminProtectedRoute>
+              
             }/>
           </Route>
           <Route path="*" element={<NotFound />} />

@@ -9,6 +9,28 @@
     border-radius: 10px;
     height: 100px
   }
+  /* styles.module.css */
+
+/* ... Otros estilos ... */
+
+.shop {
+  display: flex;
+  /* Adjust the width and height values as needed */
+  width: 40px; /* Example width */
+  height: 40px; /* Example height */
+}
+
+.cartItemCount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff9900;
+  color: #fff;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -55,6 +77,13 @@ a:hover {
     padding: 20px;
 
   }
+  @media (max-width: 768px) {
+    .shop {
+      width: 30px; /* Example width for smaller screens */
+      height: 30px; /* Example height for smaller screens */
+    }
+  }
+  
 
   .logo {
     margin-bottom: 10px;

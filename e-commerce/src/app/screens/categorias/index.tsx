@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div className={styles.categoryList}>
-      <h2>Categories</h2>
+      <h2>Categorias</h2>
       <div className={styles.categoryCards}>
         {data?.map((category) => (
           <div key={category.id} className={styles.categoryCard}>

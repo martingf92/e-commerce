@@ -29,26 +29,23 @@
     font-weight: bold;
   }
   
-  .cartIcon {
+  .cartImageContainer {
+    width: 30px; /* Ajusta el ancho según tus necesidades */
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #007bff;
-    border-radius: 50%;
   }
   
-  .cartIcon img {
-    width: 24px;
-    height: 24px;
-    color: #fff;
+  .cartImage {
+    max-width: 100%;
+    max-height: 100%;
   }
   
   .cartItemsCount {
     font-size: 12px;
     font-weight: bold;
-    color: #fff;
+    color: #f48608;
     margin-top: 2px;
   }
   

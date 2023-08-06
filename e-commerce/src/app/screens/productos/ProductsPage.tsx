@@ -4,6 +4,7 @@ import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/Error";
 import styles from "./styles.module.css";
 import { useCartContext } from "../../hooks/CreateContext";
+
 interface Category {
   id: number;
   name: string;
