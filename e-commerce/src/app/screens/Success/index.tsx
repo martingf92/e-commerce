@@ -7,7 +7,11 @@ const CompraExitosa: React.FC = () => {
       <p>¡Gracias por tu compra!</p>
       <p>Tu pedido ha sido procesado con éxito.</p>
       <p>Esperamos que disfrutes de tus productos.</p>
-      {/* Puedes agregar más contenido aquí si lo deseas */}
+      <img
+        src="/pexels-karolina-grabowska-5632379.jpg"
+        alt="Compra Exitosa"
+        style={{ maxWidth: '50%', height: 'auto' }}
+      />
     </div>
   );
 };

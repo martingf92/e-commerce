@@ -71,6 +71,8 @@ const EditModal: React.FC<EditModalProps> = ({ productData, closeModal, updatePr
           <div className={styles.inputContainer}>
             <label className={styles.inputLabel}>Image URL</label>
             <input className={styles.input} type="text" value={image} onChange={handleImageChange} />
+            <input className={styles.input} type="text" value={image} onChange={handleImageChange} />
+            <input className={styles.input} type="text" value={image} onChange={handleImageChange} />
           </div>
           <button className={styles.button} onClick={handleUpdate}>Update Product</button>
           <button className={styles.button} onClick={closeModal}>Cancel</button>

@@ -36,10 +36,10 @@ const Nav: React.FC = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/categorias">Categories</Link>
+          <Link to="/categorias">Categorias</Link>
         </li>
         <li>
-          <Link to="/products">Products</Link>
+          <Link to="/products">Productos</Link>
         </li>
 <li>
   <Cart></Cart>

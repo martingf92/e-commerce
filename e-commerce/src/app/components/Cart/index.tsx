@@ -22,7 +22,9 @@ const Cart: React.FC = () => {
             <span className={styles.cartItemsCount}>Items {totalItems}</span>
           </div>
         </div>
-        <img src="/shop.png" alt="shop" />
+        <div className={styles.cartImageContainer}>
+          <img src="/shop.png" alt="shop" className={styles.cartImage} />
+          </div>
       </div>
     </Link>
 
