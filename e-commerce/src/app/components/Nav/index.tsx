@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import LogoutModal from "../LogoutModal";
+import Cart from "../Cart";
 
 const Nav: React.FC = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -40,7 +41,9 @@ const Nav: React.FC = () => {
         <li>
           <Link to="/products">Products</Link>
         </li>
-
+<li>
+  <Cart></Cart>
+</li>
         {loggedIn && isAdmin && (
           <li>
             <Link to="/adminpage">Dashboard</Link>

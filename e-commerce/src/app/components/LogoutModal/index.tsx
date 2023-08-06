@@ -1,16 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
-
+import { useCartContext } from "../../hooks/CreateContext";
 interface LogoutModalProps {
   handleLogout: () => void;
 }
 
 const LogoutModal: React.FC<LogoutModalProps> = ({ handleLogout }) => {
   const navigate = useNavigate();
-
+  const { clearCart } = useCartContext();
+  
   const handleConfirmLogout = () => {
     handleLogout();
+    clearCart();
     navigate("/");
   };
 

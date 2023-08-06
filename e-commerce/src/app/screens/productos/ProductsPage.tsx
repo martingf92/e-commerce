@@ -3,8 +3,7 @@ import { useQuery } from "react-query";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/Error";
 import styles from "./styles.module.css";
-import { Link } from "react-router-dom";
-
+import { useCartContext } from "../../hooks/CreateContext";
 interface Category {
   id: number;
   name: string;
@@ -108,6 +107,13 @@ const ProductListView: React.FC = (): React.ReactElement => {
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+  const { addToCart } = useCartContext();
+  
+  const handleAddToCart = (product) => {
+    if (product) {
+      addToCart({ ...product, quantity: 1 }); 
+    }
+  };
 
   return (
     <div className={styles.productList}>
@@ -163,6 +169,8 @@ const ProductListView: React.FC = (): React.ReactElement => {
                 <h3>{product.title}</h3>
                 <p>{product.price}</p>
                 <p>{product.description}</p>
+                <button onClick={() => handleAddToCart(product)} className={styles.addToCartButton}>
+                  Add to Cart</button>
               </div>
             </div>
           ))
