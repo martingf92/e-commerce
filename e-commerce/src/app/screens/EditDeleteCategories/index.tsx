@@ -41,8 +41,9 @@ const EditDeleteCategory: React.FC = () => {
       }
       const categoriesData: Category[] = await response.json();
       setCategories(categoriesData);
-    } catch (error) {
-      setError(error.message || "Failed to fetch categories");
+    } catch (error: unknown) { 
+      setError((error as Error).message|| "Failed to fetch categories");
+       
     }
   };
 
@@ -63,8 +64,9 @@ const EditDeleteCategory: React.FC = () => {
         setEditedImage(categoryData.image);
         setSuccess("");
         setError("");
-      } catch (error) {
-        setError(error.message || "Failed to fetch category data");
+      } catch (error: unknown) { 
+        setError((error as Error).message|| "Failed to fetch category data"); 
+         
       } finally {
         setLoading(false);
       }
@@ -111,8 +113,9 @@ const EditDeleteCategory: React.FC = () => {
       setEditedName("");
       setEditedImage("");
       fetchCategories();
-    } catch (error) {
-      setError(error.message || "Failed to update category");
+    } catch (error: unknown) { 
+      setError((error as Error).message|| "Failed to update category"); 
+       
       setSuccess("");
       setLoading(false);
     }
@@ -141,8 +144,8 @@ const EditDeleteCategory: React.FC = () => {
       setCategories((prevCategories) => prevCategories.filter((category) => category.id !== categoryIdToDelete));
       setSelectedCategory(null);
       setShowDeleteConfirmation(false);
-    } catch (error) {
-      setError(error.message || "Failed to delete category");
+    } catch (error: unknown) { 
+      setError((error as Error).message || "Failed to delete category");
     } finally {
       setLoading(false);
     }

@@ -64,8 +64,9 @@ const CreateProduct: React.FC = () => {
       setImage("");
 
       setLoading(false);
-    } catch (error) {
-      setError(error.message || "Failed to add product");
+    } catch (error: unknown) { 
+      setError((error as Error).message || "Failed to add product"); 
+      
       setSuccess("");
       setLoading(false);
     }

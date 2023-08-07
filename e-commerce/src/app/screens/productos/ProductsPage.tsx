@@ -110,9 +110,14 @@ const ProductListView: React.FC = (): React.ReactElement => {
   const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
   const { addToCart } = useCartContext();
   
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product:Product) => {
     if (product) {
-      addToCart({ ...product, quantity: 1 }); 
+      addToCart({
+        ...product, quantity: 1,
+        product: undefined,
+        image: undefined,
+        name: undefined
+      }); 
     }
   };
 

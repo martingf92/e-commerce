@@ -220,15 +220,12 @@
 import React, { useState, useEffect } from "react";
 import ErrorMessage from "../../components/Error";
 import styles from "./styles.module.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import EditModal from "../../components/EditModal"; // Modal de edición
 import DeleteModal from "../../components/DeleteModal"; // Modal de eliminación
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation} from 'react-query';
 
-interface RouteParams {
-  productId: string;
-  [key: string]: string | undefined;
-}
+
 
 interface ProductData {
   id: number;
@@ -251,7 +248,7 @@ const EditDeleteProducts: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  
 
   useEffect(() => {
     fetchProducts();
@@ -286,8 +283,8 @@ const EditDeleteProducts: React.FC = () => {
       const data = await response.json();
       setProducts(data);
       setTotalPages(Math.ceil(data.total / limit));
-    } catch (error) {
-      setError(error.message || "Failed to fetch products");
+    } catch (error: unknown) { 
+      setError((error as Error).message || "Failed to fetch products");
     } finally {
       setLoading(false);
     }
@@ -331,8 +328,8 @@ const EditDeleteProducts: React.FC = () => {
       setLoading(true);
       await editProductMutation.mutateAsync(updatedProduct);
       handleCloseEditModal();
-    } catch (error) {
-      setError(error.message || 'Failed to update product');
+    } catch (error: unknown) { 
+      setError((error as Error).message || 'Failed to update product');
     } finally {
       setLoading(false);
     }
@@ -342,8 +339,8 @@ const EditDeleteProducts: React.FC = () => {
     try {
       setLoading(true);
       await deleteProductMutation.mutateAsync(selectedProduct!.id);
-    } catch (error) {
-      setError(error.message || 'Failed to delete product');
+    } catch (error: unknown) { 
+      setError((error as Error).message || 'Failed to delete product');
     } finally {
       setLoading(false);
     }
