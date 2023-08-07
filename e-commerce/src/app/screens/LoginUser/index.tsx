@@ -177,7 +177,7 @@
 
 
 
-import React, { useEffect, useState } from "react";
+import React, {useState}  from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
@@ -237,8 +237,9 @@ const Login: React.FC = () => {
       localStorage.setItem("userData", JSON.stringify(user));
 
       navigate("/");
-    } catch (error) {
-      setError(error.message || "Login failed");
+    } catch (error: unknown) { 
+      setError((error as Error).message || "login failed"); 
+      throw error;
     }
   };
 

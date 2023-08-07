@@ -7,7 +7,7 @@ const CreateCategory: React.FC = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState<string>("");
 
   const navigate = useNavigate();

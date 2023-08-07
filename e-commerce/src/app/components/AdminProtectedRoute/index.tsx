@@ -1,24 +1,3 @@
-// import { Navigate } from 'react-router-dom';
-
-// interface UserData {
-//   id: number;
-//   email: string;
-//   name: string;
-//   role: string;
-// }
-
-// export const AdminProtectedRoute = ({ children }) => {
-//   const loggedIn = localStorage.getItem('loggedIn') === 'true';
-  
-//   const storedUserData = localStorage.getItem("userData");
-//   const userData: UserData | null = storedUserData ? JSON.parse(storedUserData) : null;
-//   const isAdmin = userData?.role === 'admin' 
-
-//   return isAdmin && loggedIn ? children : <Navigate to="/" replace />;
-// };
-
-
-
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -30,7 +9,7 @@ interface UserData {
 }
 
 interface AdminProtectedRouteProps {
-  children: ReactNode; // Utiliza ReactNode para permitir cualquier tipo de componente como hijo
+  children: ReactNode;
 }
 
 export const AdminProtectedRoute = ({ children }: AdminProtectedRouteProps) => {
@@ -40,5 +19,9 @@ export const AdminProtectedRoute = ({ children }: AdminProtectedRouteProps) => {
   const userData: UserData | null = storedUserData ? JSON.parse(storedUserData) : null;
   const isAdmin = userData?.role === 'admin';
 
-  return isAdmin && loggedIn ? children : <Navigate to="/" replace />;
+  if (isAdmin && loggedIn) {
+    return <>{children}</>; // Devuelve el contenido del children si el usuario es administrador y ha iniciado sesión
+  } else {
+    return <Navigate to="/" replace />; // Redirige si el usuario no cumple con los requisitos
+  }
 };
