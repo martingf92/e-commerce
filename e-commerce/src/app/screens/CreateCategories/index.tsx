@@ -49,8 +49,8 @@ const CreateCategory: React.FC = () => {
       setImage("");
 
       setLoading(false);
-    } catch (error) {
-      setError(error.message || "Failed to create category");
+    } catch (error: unknown) { 
+      setError((error as Error).message || "Failed to create category");
       setSuccess("");
       setLoading(false);
     }
